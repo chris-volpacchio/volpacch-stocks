@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: volpacch-stocks
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn stocksite.wsgi"
+    plan: free
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: FMP_API_KEY
+        value: "demo"
