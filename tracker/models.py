@@ -1,7 +1,13 @@
+""" 
+Stock Search Object to make Database table through Django model
+"""
+
 from django.db import models
+
 
 class StockSearch(models.Model):
     ticker = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
     fetched_price = models.FloatField()
     searched_at = models.DateTimeField(auto_now_add=True)
 

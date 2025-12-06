@@ -8,10 +8,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-local-dev-key")
-DEBUG = os.getenv("DEBUG", "False").lower() in ("1", "true", "yes")
+DEBUG = os.getenv("DEBUG", "True")  # .lower() in ("1", "true", "yes")
 
 # Hosts: add your Render subdomain and custom domain here or set via env var
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1,volpacch-stocks.onrender.com,volpacch-stocks.com").split(",")
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1,volpacch-stocks.onrender.com,volpacch-stocks.com,0.0.0.0",
+).split(",")
 
 # Applications
 INSTALLED_APPS = [
@@ -83,3 +86,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Financial API key (FinancialModelingPrep)
 FMP_API_KEY = os.getenv("FMP_API_KEY", "demo")
+
+# BUG - issues rendering charts in UI, trying different approach
+STATIC_URL = "/static/"
+MEDIA_ROOT = "media"
+
+if __name__ == "__main__":
+    # Set environment variables when settings imported
+    load_dotenv()

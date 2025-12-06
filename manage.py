@@ -1,7 +1,14 @@
+"""
+Docstring for manage
+
+Set stock tracker settings
+"""
+
 #!/usr/bin/env python
 import os
 import sys
 import django
+
 
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "stocksite.settings")
@@ -12,6 +19,7 @@ def main():
             "Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH?"
         ) from exc
     execute_from_command_line(sys.argv)
+
 
 if __name__ == "__main__":
     main()
